@@ -1,0 +1,3 @@
+class VDom {
+  constructor() {}
+}
