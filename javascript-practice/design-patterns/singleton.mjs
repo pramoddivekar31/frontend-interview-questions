@@ -38,13 +38,27 @@ const singletonInstance = new Singleton(); // Create a single instance
 export default singletonInstance;
 
 // class
-
 class Singleton {
   static instance = null;
 
-  getInstance() {
-    if (!Singleton.instance) Singleton.instance = new Singleton();
+  constructor() {
+    // Ensure that the instance is created only once
+    if (!Singleton.instance) {
+      Singleton.instance = this;
+    }
+
+    return Singleton.instance;
+  }
+
+  static getInstance() {
+    // Use the static method to get the instance
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
+    }
 
     return Singleton.instance;
   }
 }
+
+// Create an instance using the static method
+const singletonInst = Singleton.getInstance();
