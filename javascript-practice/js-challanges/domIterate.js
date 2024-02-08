@@ -18,12 +18,13 @@ console.log("data", data);
 const findEquivalentNode = (rootA, rootB, targetNode) => {
   if (rootA === targetNode) return rootB;
   const rootAChildren = rootA.children;
+  const rootBChildren = rootB.children;
 
   for (let i = 0; i < rootAChildren.length; i++) {
     if (rootAChildren[i]?.children) {
       const result = findEquivalentNode(
         rootAChildren[i],
-        rootB.children[i],
+        rootBChildren[i],
         targetNode
       );
       if (result) return result;
