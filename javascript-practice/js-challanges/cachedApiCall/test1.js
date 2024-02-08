@@ -1,7 +1,7 @@
 // import Singleton from "./singleton.mjs";
 // console.log("Test1:", Singleton.getInstance());
 
-import apiCache from "./cachedapicall.mjs";
+import apiCache from "./cached-api-with-ttl.mjs";
 
 const fetchData = async () => {
   const data = await apiCache.get(

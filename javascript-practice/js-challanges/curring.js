@@ -11,3 +11,15 @@ const curry = (...a) => {
 
 let sum = curry(1, 2)(2, 5)(5, 2, 3);
 console.log("CURRY SUM", sum());
+
+function sum(x) {
+  return function (y) {
+    return function (z) {
+      return x + y + z;
+    };
+  };
+}
+
+// Usage
+const result = sum(1)(2)(3);
+console.log(result); // Output: 6
