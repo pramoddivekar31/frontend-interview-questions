@@ -10,6 +10,16 @@
             border: 1px solid red;
             padding: 20px 50px;
         }
+
+        #card-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 10px;
+        }
+
+        #last {
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -83,12 +93,12 @@
         <div id="card">This is old card</div>
         <div id="card">This is old card</div>
         <div id="card">This is old card</div>
-        <div id="card">This is old card</div>
+        <div id="card last">This is old card</div>
     </div>
 
     <button onclick="console.log('Button clicked!')">Print Log</button>
 
-    <script src="../output-based-questions/promise-timeout.js"></script>
+    <!-- <script src="../output-based-questions/promise-timeout.js"></script> -->
 </body>
 
 </html>
