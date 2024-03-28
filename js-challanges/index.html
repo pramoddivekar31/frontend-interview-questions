@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #card {
+            border: 1px solid red;
+            padding: 20px 50px;
+        }
+    </style>
+</head>
+
+<body id="test" class="test1">
+    <!-- <div class="autosuggest">
+        <input type="text" id="searchInput" placeholder="Search">
+        <ul id="suggestions"></ul>
+    </div> -->
+    <!-- [0,1,1,4] -->
+    <div id="container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div>
+            <p>
+                <span id="span-by-id">3</span>
+            </p>
+        </div>
+    </div>
+    <div id="container1">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div>
+            <p>
+                <span>4</span>
+            </p>
+        </div>
+    </div>
+
+    <p id="p1" draggable="true" ondragstart="dragstartHandler(event)">
+        This element is draggable.
+    </p>
+    <div id="target" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
+        Drop Zone
+    </div>
+
+    <button>
+        <h1 id="rate-limit">Rate Limitor</h1>
+    </button>
+
+    <h1 title="this is tooltip">Check tooltip</h1>
+
+    <h1 data-tooltip="this is a tooltip example">Tooltip Hover</h1>
+
+
+    <div id="card-container">
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+        <div id="card">This is old card</div>
+    </div>
+
+    <button onclick="console.log('Button clicked!')">Print Log</button>
+
+    <script src="../output-based-questions/promise-timeout.js"></script>
+</body>
+
+</html>

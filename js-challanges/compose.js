@@ -39,3 +39,35 @@ const composedResult = composeOperations(square1, increment, duplicate);
 const result2 = composedResult(3);
 
 console.log(result2); // Output: 49 (square(increment(duplicate(3))))
+
+
+// Pattern 4
+const compose = (...fns) => (...initialVal) => fns.reduceRight((val, fn) => {
+  val = Array.isArray(val) ? val : [val]
+  return fn(...val)
+}, initialVal);
+
+
+// with recursion
+const composeR = (...functions) => {
+  return (...args) => {
+      const executeFun = (args, i) => {
+          if(!functions[i]) return args
+          
+          let params = Array.isArray(args) ? args : [args] 
+          const result = functions[i](...params)
+          i--
+          return executeFun(result, i)
+      }
+      return executeFun(args, functions.length-1)
+  }
+}
+
+const add = (a, b) => a + b;
+const square2 = (x) => x * x;
+
+const addAndSquare = composeR(square2, add);
+
+// Example usage:
+const result3 = addAndSquare(3, 4); // Square the sum of 3 and 4
+console.log(result3); // Output: 49

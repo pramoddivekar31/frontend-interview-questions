@@ -4,11 +4,12 @@ function task(cb) {
   const value = Math.random() * 1000;
   setTimeout(() => {
     cb(value);
-  }, value);
+  }, Math.random() * 1000);
 }
 
-const tasksList = [task, task, task, task, task];
+const taskList = [task, task, task, task, task];
 
+// Implementation 1
 function executeTasksInSeries(tasks, finalCallback) {
   let currentIndex = 0;
   const results = [];
@@ -30,4 +31,23 @@ function executeTasksInSeries(tasks, finalCallback) {
   executeNextTask(tasks[0]);
 }
 
-executeTasksInSeries(tasksList, (result) => console.log(result));
+executeTasksInSeries(taskList, (result) => console.log(result));
+
+// Implementation 2
+const logger = (value) => (cb) => setTimeout(cb, Math.random() * 1000, value);
+
+const loggerList = [logger(1), logger(2), logger(3), logger(4), logger(5)];
+
+const executeTasksInSeries2 = (taskList, finalCb) => {
+  const executeSeriesTasks = (taskList, index = 0, result = []) => {
+    if (index >= taskList.length) return finalCb(result);
+
+    taskList[index]((value) => {
+      executeSeriesTasks(taskList, ++index, [...result, value]);
+    });
+  };
+
+  executeSeriesTasks(taskList);
+};
+
+executeTasksInSeries2(loggerList, (result) => console.log(result));

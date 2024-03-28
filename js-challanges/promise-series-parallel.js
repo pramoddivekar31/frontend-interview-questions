@@ -23,6 +23,32 @@ const executePromisesInParallel = (promises) => {
 
 executePromisesInParallel(promises);
 
+const promisesInSeries = (promiseList) => {
+  const result = [];
+
+  const executePromise = (promise, index = 0) => {
+    if (index === promiseList.length) {
+      console.log("Result is:", result);
+      return;
+    }
+
+    promise
+      .then((res) => {
+        result[i] = res;
+        index++;
+        executePromise(promiseList[index], index);
+      })
+      .catch((err) => {
+        result[i] = err;
+        executePromise(promiseList[index], index);
+      });
+  };
+
+  executePromise(promiseList[0], 0);
+};
+
+promisesInSeries(promiseList);
+
 const executePromisesInSeries = async (promises) => {
   for (let i = 0; i < promises.length; i++) {
     try {
@@ -35,29 +61,3 @@ const executePromisesInSeries = async (promises) => {
 };
 
 executePromisesInSeries(promises);
-
-const executePromisesInSeries2 = (promises) => {
-  let currentIndex = 0;
-
-  const executeNextPromise = () => {
-    if (currentIndex === promises.length) {
-      return;
-    }
-
-    promises[currentIndex]
-      .then((response) => {
-        console.log("Series Response:", response);
-        currentIndex++;
-        executeNextPromise();
-      })
-      .catch((error) => {
-        console.log("Series Error:", error);
-        currentIndex++;
-        executeNextPromise();
-      });
-  };
-
-  executeNextPromise();
-};
-
-executePromisesInSeries2(promises);

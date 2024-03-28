@@ -1,32 +1,29 @@
 // Angel One
 const maxConcurrentTasks = 3;
 
-const taskRunner = () => {
-  const promiseQueue = [];
-  let runningPromises = 1;
+const parallelTaskRunner = () => {
+  const promiseList = [];
+  let runningPromises = 0;
 
-  const executePromise = () => {
-    if (promiseQueue.length === 0 || runningPromises > maxConcurrentTasks) {
-      return;
+  const executePromises = (promises) => {
+    if (runningPromises < maxConcurrentTasks && promises.length) {
+      const promiseFn = promises.shift();
+      runningPromises++;
+
+      promiseFn().then(() => {
+        runningPromises--;
+        executePromises(promiseList);
+      });
     }
-
-    const promise = promiseQueue.shift();
-    runningPromises++;
-    promise().then((res) => {
-      console.log("Response:", res);
-      runningPromises--;
-      executePromise();
-    });
   };
 
   return (promiseFn) => {
-    promiseQueue.push(promiseFn);
-
-    executePromise();
+    promiseList.push(promiseFn);
+    executePromises(promiseList);
   };
 };
 
-const executePromises = taskRunner();
+const executePromises = parallelTaskRunner();
 
 executePromises(
   () => new Promise((resolve) => setTimeout(() => resolve(1), 1000))

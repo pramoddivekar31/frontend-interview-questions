@@ -17,21 +17,21 @@ arrowFunction();
 
 // Function declaration and arrow function in an object
 const myObject = {
-  name: "Pramod",
+  name: "Test",
   getFunctionName: function () {
-    console.log(this); // myObject
+    console.log(this);
   },
   getArrowFunctionName: () => {
-    console.log(this); // Window
+    console.log(this);
   },
   updateArrowFunctionScope: function () {
     const innerArrowFunction = () => {
-      console.log(this); // myObject
+      console.log(this);
     };
     innerArrowFunction();
   },
 };
 
-myObject.getFunctionName(); // myObject
-myObject.getArrowFunctionName(); // Window
-myObject.updateArrowFunctionScope(); // myObject
+myObject.getFunctionName();
+myObject.getArrowFunctionName();
+myObject.updateArrowFunctionScope();
